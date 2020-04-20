@@ -21,14 +21,16 @@
 
 {% macro header_items(current_user) %}
     {% set endpoints = [
-      ('main.index', config.APP_NAME, 'home'),
+      ('main.index', '', 'home'),
       ('main.about', 'About', 'info')
     ]%}
-    {% set user = [] %}
+
+    {% set card = [] %}
     {% if current_user.is_authenticated %}
-      {% set user = ([(current_user.role.index + '.index', current_user.role.name + ' Dashboard', 'user')]) %}
+      {% set card = ([('card.index', 'FlashCards', 'user')]) %}
     {% endif %} 
-    {{ render_menu_items( endpoints +  user ) }}
+
+    {{ render_menu_items( endpoints  + card) }}
 {% endmacro %}
 
 {# This renders the right hand side of the navigation bar. If the user is logged in, it links to 
@@ -38,7 +40,8 @@
     {% if current_user.is_authenticated %}
       {% set endpoints = [
         ('account.manage', 'Your Account', 'settings'),
-        ('account.logout', 'Log out', 'sign out')
+        ('account.logout', 'Log out', 'sign out'),
+        (current_user.role.index + '.index', current_user.role.name + ' Dashboard', 'user')
       ] %}
       {{ render_menu_items(endpoints) }}
     {% else %}

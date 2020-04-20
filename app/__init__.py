@@ -76,5 +76,8 @@ def create_app(config):
 
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    
+    from .card import card as card_blueprint
+    app.register_blueprint(card_blueprint, url_prefix='/card')
 
     return app
