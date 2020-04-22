@@ -7,16 +7,46 @@
 
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
     <div class="container">
         
      This web page contains the Machine Learning Flash Cards created by Chris Albon. 
 
+
+  <div class="row">
+    <div class="col-lg-8">
+
+      {% if search_form %}
+
+
+
+
+
+
+
+
+              <form class="form-inline" id="SearchForm" method="POST" action="/card/" role="search">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <div class="input-group">
+                  {{ search_form.q(placeholder="Search", class_="form-control mr-sm-2 my-auto") }} 
+                  <button class="btn btn-primary m-auto" type="submit">Search</button>
+                </div>
+              </form>
+
+
+
+
+
+      {% endif %}
     </div>
-</div><!-- /.jumbotron -->
+  </div>
+
+    </div>
+
+
 
 <div class="container">
-  <div class="row">
+  
+    <div class="row">
 
   {% for card in cards %}
     <div class="col-lg-6">

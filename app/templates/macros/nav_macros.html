@@ -36,6 +36,8 @@
 {# This renders the right hand side of the navigation bar. If the user is logged in, it links to 
    manage their account and logout (account routes). Otherwise, it links to register and login.
 #}
+
+
 {% macro account_items(current_user) %}
     {% if current_user.is_authenticated %}
       {% set endpoints = [
